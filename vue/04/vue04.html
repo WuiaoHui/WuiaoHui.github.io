@@ -1,0 +1,140 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+</head>
+<body>
+    <div id="app">
+        <!-- 表单输入绑定  v-model与input、textarea、select的奇妙之旅 -->
+        <!-- v-model 指令在表单 <input>、<textarea> 及 <select> 元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 v-model 本质上不过是语法糖。它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。 -->
+        <!-- 文本 input -->
+        <input type="text" v-model="message" placeholder="输入更新">
+        <p>Message is: {{ message }}</p>
+
+        <!-- 多行文本 textarea -->
+        <span>Multiline message is:</span>
+        <p style="white-space: pre-line;">{{ message }}</p>
+        <br>
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+        <!-- 复选框 checkbox-->
+        <input type="checkbox" id="box" v-model="checked">
+        <label for="box">{{ checked }}</label>
+
+        <!-- 单选框 radio   picked等于选中的单选框的value-->
+       
+                <input type="radio" id="one" value="One" v-model="picked">
+                <label for="one">One</label>
+                <br>
+                <input type="radio" id="two" value="Two" v-model="picked">
+                <label for="two">Two</label>
+                <br>
+                <span>Picked: {{ picked }}</span>
+
+
+        <!-- 选择框 select -->
+        <!-- 单选 -->
+        <select v-model="selected">
+                <option disabled value="">请选择</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+
+        <!-- 多选 multiple-->
+        <select v-model="select" multiple style="width: 50px;">
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+        </select>
+        <br>
+        <span>Selected: {{ select }}</span>
+
+        <!-- 对于单选按钮，复选框及选择框的选项，v-model 绑定的值通常是静态字符串 (对于复选框也可以是布尔值) -->
+        <!-- 但是有时我们可能想把值绑定到 Vue 实例的一个动态属性上，这时可以用 v-bind 实现，并且这个属性的值可以不是字符串。 -->
+
+        <!-- 修饰符 .lazy  添加 lazy 修饰符，v-model从而转变为使用 change 事件进行同步-->
+        <input v-model.lazy="msg" >
+        <span>{{msg}}</span>
+        <!-- .number  自动将用户的输入值转为数值类型 -->
+        <!-- .trim    自动过滤用户输入的首尾空白字符-->
+
+
+        <!-- 组件基础 -->
+        <!-- 1.因为组件是可复用的 Vue 实例，所以它们与 new Vue 接收相同的选项，例如 data、computed、watch、methods 以及生命周期钩子等。仅有的例外是像 el 这样根实例特有的选项。 -->
+        <!-- 2.可以在一个通过 new Vue 创建的 Vue 根实例中，把组件作为自定义元素来使用 你可以将组件进行任意次数的复用 -->
+        <!-- 3.当我们创建组件时，data是一个函数，并返回一个对象 -->
+
+        <!-- 组件的注册：全局注册Vue.component('',{})  和局部注册-->
+
+        <!-- 通过 Prop 向子组件传递数据 -->
+        <!-- <blog-post title="今天天气真好，阳光明媚！"></blog-post> -->
+        <!-- 我们可以使用 v-bind 来动态传递 prop -->
+        <!-- <blog-post
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+        ></blog-post> -->
+
+        <!-- 单个根元素  每个组件必须只有一个根元素 -->
+
+        <!-- 当组件变得越来越复杂的时候，我们的博文不只需要标题和内容，还需要发布日期、评论等等，所以是时候重构一下这个 <blog-post> 组件了，让它变成接受一个单独的 post prop -->
+        <blog-post
+        v-for="post in posts"
+        v-bind:key="post.id"
+        v-bind:post="post"
+        ></blog-post>
+
+        <!-- 通过事件向父级组件发送消息  我们可以调用内建的 $emit 方法并传入事件的名字，来向父级组件触发一个事件： -->
+        <div :style="{ fontSize: postFontSize + 'em' }" >
+            <blog-post2 
+            v-on:enlarge-text="postFontSize += 0.1"
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:post="post"></blog-post2>
+        </div>
+
+        <!-- 通过插槽分发内容 slot 没有分配的内容会放到插槽里-->
+        <alert-box>
+            Something bad happened.
+        </alert-box>
+
+        <!-- 动态组件 is -->
+        <!-- 组件会在 `currentTabComponent` 改变时改变 -->
+        <!-- <component v-bind:is="currentTabComponent"></component> -->
+        <!-- 在上述示例中，currentTabComponent 可以包括
+        已注册组件的名字，或
+        一个组件的选项对象 -->
+
+
+        <!-- 解析 DOM 模板时的注意事项  -->
+        <!-- 有些 HTML 元素，诸如 <ul>、<ol>、<table> 和 <select>，对于哪些元素可以出现在其内部是有严格限制的。而有些元素，诸如 <li>、<tr> 和 <option>，只能出现在其它某些特定的元素内部。 -->
+                <!-- 
+                    <table>
+                        <blog-post-row></blog-post-row>
+                    </table>
+                 -->
+        <!-- 幸好这个特殊的 is 特性给了我们一个变通的办法： -->
+        <!-- 
+            <table>
+                <tr is="blog-post-row"></tr>
+            </table> 
+        -->
+        
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue04.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+    </script> 
+</body>
+</html>

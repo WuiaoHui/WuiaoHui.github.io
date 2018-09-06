@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#show{
+    width: 100vw;
+    height: 100vh;
+    color: #fff;
+    font-size: 14px;
+}
+ul{
+    list-style: none;
+}
+.pic{
+    position: relative;
+    width: 600px;
+    height: 400px;
+    transform:translate(60%,25%);
+    overflow: hidden;
+}
+.pic ul li{
+    position: absolute;
+    width: 600px;
+    height: 400px;
+   
+}
+.pic span{
+    width: 20px;
+    height: 400px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+}
+.pic img{
+    width: 500px;
+    height: 400px;
+}
+.span01{
+    background-color: rgb(79, 202, 202);
+    z-index: 9;
+}
+.span02{
+    background-color: rgba(223, 81, 25, 0.329);
+    z-index: 9;
+}
+.span03{
+    background-color: rgb(187, 145, 226);
+    z-index: 9;
+}
+.span04{
+    background-color: rgb(228, 181, 51);
+    z-index: 9;
+}
+.span05{
+    background-color: rgb(117, 117, 226);
+    z-index: 9;
+}
+.olist01{
+    left:0;
+}
+.olist02{
+    left: 520px;
+}
+.olist03{
+    left: 540px;
+}
+.olist04{
+    left: 560px;
+}
+.olist05{
+    left: 580px;
+}

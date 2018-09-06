@@ -1,0 +1,88 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <div id="app">
+        <!-- 深入了解组件 -->
+        <!-- 定义组件名的方式有两种： kebab-case (短横线分隔命名) 和 PascalCase (驼峰式命名)  直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。-->
+
+        <!-- 全局注册 Vue.component('',{})  它们在注册之后可以用在任何新创建的 Vue 根实例 (new Vue) 的模板中-->
+        <!-- 局部注册  1. var ComponentA = { /* ... */ }  2. new Vue({
+                                                                    el: '#app'
+                                                                    components: {
+                                                                        'component-a': ComponentA
+                                                                    }
+                                                                })
+        components 对象中的每个属性来说，其属性名就是自定义元素的名字，其属性值就是这个组件的选项对象。
+        -->
+
+        <!-- 模块系统 -->
+        <!-- 在模块系统中局部注册 -->
+        <!-- 1.创建一个 components 目录，并将每个组件放置在其各自的文件中。 -->
+        <!-- 2.在局部注册之前导入每个你想使用的组件。 例如：import ComponentA from './ComponentA'
+                                                            export default {
+                                                                    components: {
+                                                                                ComponentA
+                                                                            },
+                                                                            // ...
+                                                                        }
+        -->
+
+        <!-- 基础组件的自动化全局注册 -->
+        <!-- 如果你使用了 webpack (或在内部使用了 webpack 的 Vue CLI 3+)，那么就可以使用 require.context 只全局注册这些非常通用的基础组件。 -->
+
+        <!-- Prop -->
+        <!-- 当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case (短横线分隔命名) 命名： -->
+
+        <!-- Prop 类型  1.以字符串数组形式列出的 prop  2.以对象形式列出 prop   -->
+
+        <!-- 传递静态或动态 Prop   1.给 prop 传入一个静态的值  2.prop 可以通过 v-bind 动态赋值 -->
+        <!-- 任何类型的值都可以传给一个 prop。 -->
+        <!-- 单向数据流 父级 prop 的更新会向下流动到子组件中，但是反过来则不行。 -->
+        <!-- 注意在 JavaScript 中对象和数组是通过引用传入的，所以对于一个数组或对象类型的 prop 来说，在子组件中改变这个对象或数组本身将会影响到父组件的状态。 -->
+
+        <!-- Prop 验证  
+        props: {
+            // 基础的类型检查 (`null` 匹配任何类型)
+            propA: Number,
+            // 多个可能的类型
+            propB: [String, Number],
+            // 必填的字符串
+            propC: {
+            type: String,
+            required: true
+            },
+            // 带有默认值的数字
+            propD: {
+            type: Number,
+            default: 100
+            }
+        }
+        -->
+
+        <!-- 自定义事件 -->
+        <!-- 我们推荐你始终使用 kebab-case 的事件名。 -->
+        <!-- 将原生事件绑定到组件  这时，你可以使用 v-on 的 .native 修饰符 -->
+        
+
+
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue04.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+    </script> 
+</body>
+</html>

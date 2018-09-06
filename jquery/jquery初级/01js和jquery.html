@@ -1,0 +1,53 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>01</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script>
+    
+    //js选择器querySelector  querySelectorAll
+    window.onload = function(){
+         //在文档节点加载完以后才执行
+         var oDiv = document.querySelector('#box');
+         var oLi = document.querySelectorAll('.list li');
+         alert('div'+oDiv);
+         alert('oLi'+oLi.length);
+    }
+  
+
+    //原生js
+    // window.onload = function(){
+    //     var oBox = document.getElementById('box');
+    //     alert(oBox.innerHTML)
+    // };
+
+    //jQuery
+    // $(document).ready(function(){
+    //     // alert($); 测试
+    //     var $box = $('#box');
+    //     alert($box.html());
+    // });
+
+    //简化的jquery
+    // $(function(){
+    //     var $box = $('#box');
+    //     alert($box.html());
+    // });
+
+    </script>
+</head>
+<body>
+    <div id="box">This is a box</div>
+    <ul class="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

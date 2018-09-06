@@ -1,0 +1,104 @@
+<! DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div id="app">
+        <!-- 事件处理 -->
+        <!-- 用 v-on 指令监听 DOM 事件 -->
+        <button v-on:click="add">Add 1</button>
+        <p>The button above has been clicked {{ count }} times.</p>
+
+        <!-- 内联处理器中的方法 -->
+        <button v-on:click="say('hi')">Say hi</button>
+        <button v-on:click="say('what')">Say what</button>
+
+        <!-- 在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 $event 把它传入方法： -->
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+            Submit
+        </button>
+
+        <!-- 事件修饰符 -->
+        <!-- 子元素加上修饰符.stop可以防止触发父级事件 -->
+        <div v-on:click="dothat">dothat
+            <div v-on:click.stop="doThis">dothis</div>
+        </div>
+
+       <!-- 提交事件不再重载页面 .prevent 防止默认事件发生-->
+       <form v-on:submit.prevent="dothat">submit</form>
+
+       <!-- 修饰符可以串联 -->
+       <a v-on:click.stop.prevent="doThat"></a>
+
+       <!-- 只有修饰符 -->
+        <form v-on:submit.prevent></form>
+
+        <!-- 添加事件监听器时使用事件捕获模式 -->
+        <!-- 即元素自身触发的事件先在此处理，然后才交由内部元素进行处理 -->
+        <div v-on:click.capture="doThis">...</div>
+
+        <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+        <!-- 即事件不是从内部元素触发的 -->
+        <div v-on:click.self="doThat">...</div>
+
+        <!-- v-on:click.prevent.self 会阻止所有的点击  而 v-on:click.self.prevent 只会阻止对元素自身的点击 -->
+    
+        <!-- 点击事件将只会触发一次 不像其它只能对原生的 DOM 事件起作用的修饰符，.once 修饰符还能被用到自定义的组件事件上。-->
+        <a v-on:click.once="doThis"></a>
+
+        <!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+        <!-- 而不会等待 `onScroll` 完成  -->
+        <!-- 这其中包含 `event.preventDefault()` 的情况 -->
+        <div v-on:scroll.passive="onScroll">...</div>
+        <!-- 这个 .passive 修饰符尤其能够提升移动端的性能。.passive 会告诉浏览器你不想阻止事件的默认行为。 -->
+        <!-- 不要把 .passive 和 .prevent 一起使用，因为 .prevent 将会被忽略 -->
+
+        <!-- 按键修饰符 keyon -->
+        <input v-on:keyup.13="submit">
+        <input v-on:keyup.enter="submit">
+
+        <!-- 可以通过全局 config.keyCodes 对象自定义按键修饰符别名： -->
+        <!-- 在js中： Vue.config.keyCodes.f1 = 112  -->
+
+        <!-- 自动匹配按键修饰符 -->
+        <!-- 你也可直接将 KeyboardEvent.key 暴露的任意有效按键名转换为 kebab-case 来作为修饰符：
+                 <input @keyup.page-down="onPageDown">
+             
+                 在上面的例子中，处理函数仅在 $event.key === 'PageDown' 时被调用。
+        -->
+
+        <!-- 系统修饰键 -->
+        <!-- Alt + C -->
+        <!-- <input v-on:keyup.alt.67="clear"> -->
+
+        <!-- Ctrl + Click -->
+        <!-- <div @click.ctrl="doSomething">Do something</div> -->
+
+        <!-- .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。 -->
+        <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+        <!-- <button @click.ctrl.exact="onCtrlClick">A</button> -->
+
+        <!-- 鼠标按钮修饰符 -->
+        <!--
+                .left
+                .right
+                .middle
+            这些修饰符会限制处理函数仅响应特定的鼠标按钮。      
+         -->
+
+
+
+       </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="vue03.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+        </script> 
+</body>
+</html>

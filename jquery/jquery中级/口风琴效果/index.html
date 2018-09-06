@@ -1,0 +1,42 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>口风琴效果</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('.pic ul li').click(function(){
+                $(this).animate({left:$(this).index()*20});
+                $(this).prevAll().each(
+                    function(){
+                        $(this).animate({left:$(this).index()*20});
+                    }
+                );
+                $(this).nextAll().each(
+                    function(){
+                        $(this).animate({left:(600-(5-$(this).index())*20)});
+                    }
+                );
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="show">
+        <div class="pic">
+            <ul>
+                <li class="olist01"><span class="span01">乌镇照片一</span><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=67f195d5b2b7d0a26fc40ccfaa861d6c/8d5494eef01f3a29e7302ca99925bc315d607cd9.jpg" alt=""></li>
+                <li class="olist02"><span class="span02">乌镇照片二</span><img src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=c5d9b0a6347adab429dd1311eabdd879/30adcbef76094b36916f1863a1cc7cd98c109dba.jpg" alt=""></li>
+                <li class="olist03"><span class="span03">乌镇照片三</span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533620175190&di=d77f53b477954f5eb66df246eb511efb&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F013fb9554434d70000019ae985c940.jpg%401280w_1l_2o_100sh.jpg" alt=""></li>
+                <li class="olist04"><span class="span04">乌镇照片四</span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533620175189&di=f6722282bb0140f15e1da272bb473f64&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0174a955420e5c0000019ae9555b5c.jpg%401280w_1l_2o_100sh.jpg" alt=""></li>
+                <li class="olist05"><span class="span05">乌镇照片五</span><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533620175189&di=a808ef322f8489ef3611954e00eab530&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01b5115542a7f80000019ae94bdc9a.jpg%401280w_1l_2o_100sh.jpg" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>

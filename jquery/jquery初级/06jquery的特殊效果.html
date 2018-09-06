@@ -1,0 +1,34 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>05</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    
+    </style>
+   <script src="js/jquery.min.js"></script>
+   <script>
+       $(function(){
+          $('$btn').click(function(){
+              $('#box').fadeIn(1000,'swing',function(){alert('ok');})//淡出
+              $('#box').fadeOut(1000,'swing',function(){alert('ok');})//淡入
+              $('#box').fadeToggle(1000,'swing',function(){alert('ok');})//切换淡出淡入
+              $('#box').hide(1000,'swing',function(){alert('ok');})//隐藏元素
+              $('#box').show(1000,'swing',function(){alert('ok');})//展示元素
+              $('#box').slideDown(1000,'swing',function(){alert('ok');})//向下卷开
+              $('#box').slideUp(1000,'swing',function(){alert('ok');})//向上卷开
+              $('#box').slideToggle(1000,'swing',function(){alert('ok');})//依次卷开或卷起某个元素
+          })
+       })
+   </script>
+</head>
+<body>
+   
+    <input type="button" name="" id="btn">
+    <div id="box" style="width: 100px;height: 100px;color: red;">
+            <p>This is a box</p>
+    </div>
+</body>
+</html>
