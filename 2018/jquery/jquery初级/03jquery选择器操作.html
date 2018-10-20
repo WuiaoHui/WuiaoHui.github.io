@@ -1,0 +1,55 @@
+<!DOCYUPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>03</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function(){
+           //选择器样式选择
+           // $('#box ul li').css({width:'100px',height:'100px',background:'red'});
+           //$('#box ul li:eq(2)').css({width:'100px',height:'100px',background:'red'});//第三个li
+           // $('#box ul li:gt(2)').css({width:'100px',height:'100px',background:'red'});//前三个li之后的li
+
+           //对选择集进行函数过滤
+            //$('div').has('p').css({width:'100px',height:'100px',background:'red'});//选择包含p元素的div元素
+            //$('div').not('.myclass').css({width:'100px',height:'100px',background:'red'});//选择class不等于myclass的div元素
+            //$('div').filter('.myclass').css({width:'100px',height:'100px',background:'red'});//选择class等于myclass的div元素
+            //$('div').first().css({width:'100px',height:'100px',background:'red'});//选择第一个div元素
+            //$('div').eq(1).css({width:'100px',height:'100px',background:'red'});//选择第2个div元素
+
+            //选择集转移
+            $('div').prev()//选择div元素前面的第一个元素，方法里不含参数
+            $('div').prevAll()//选择div元素前面所有元素，方法可以含参数
+            $('div').next()//选择div元素后面的第一个元素，方法里不含参数
+            $('div').nextAll()//选择div元素后面所有元素，方法里可以含参数
+            $('div').closest('p')//选择离div最近的p元素
+            $('div').parent();//选择div的父元素
+            $('div').children();//选择div的所以子元素
+            $('div').siblings();//选择div的同级元素
+            $('div').finds('.myclass');//选择div内的class等于myclass的元素
+        })
+    </script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="myclass">
+        <p></p>
+    </div>
+   
+</body>
+</html>

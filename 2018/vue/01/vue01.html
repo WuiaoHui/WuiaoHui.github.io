@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+</head>
+<body>
+    <div id="app">
+        <!-- //插值：文本、原始html -->
+        <span>title:{{title}}</span>
+        <span v-once>这个将不会改变：{{title}}</span>
+
+        <p>Using mustaches: {{ rawHtml }}</p>
+        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+        <!-- 特性 -->
+        <!-- “Mustache”语法 (双大括号) 不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令 -->
+        <div v-bind:class="cla"></div>  <!--绑定class -->
+        <div v-bind:title="tit">{{title}}</div>   <!--绑定title -->
+        <div v-bind:id="dynamicId"></div>  <!--绑定id -->
+
+        <!-- 使用 JavaScript 表达式  每个绑定都只能包含单个表达式 会一直渲染所以number++会一直循环执行-->
+        <p>
+            {{number}}<br>
+            {{ ok ? 'YES' : 'NO' }}
+        </p>
+
+
+        <!-- 指令 -->
+        <p v-if="ok">现在你看到我了</p>
+        <p v-bind:class="cla">我的class是{{cla}}</p>
+        <p v-for="item in items">{{item.message}}</p>
+        <p v-on:click="onclick">点我</p>
+
+        <!-- 修饰符 .prevent .stop-->
+        <form v-on:submit.prevent="onSubmit">...</form>
+
+        <!-- 缩写：v-on @ v-bind : -->
+
+        <!-- 对于任何复杂逻辑，你都应当使用计算属性 -->
+        <p>computed title reverse:{{ reversedMessage }}</p>   <!--在computed中 -->
+        <p>methods title reverse:{{ reversedMessage1() }}</p> <!--在methods中 -->
+
+        <!-- 计算属性computed和方法methods区别：
+                1.不同的是计算属性是基于它们的依赖进行缓存的。只在相关依赖发生改变时它们才会重新求值。有缓存
+                2.相比之下，每当触发重新渲染时，调用方法将总会再次执行函数。
+        -->
+
+        <!-- 侦听属性watch 侦听的方法名要与需要侦听的属性名相同 -->
+        <div>watch:{{ fullName }}</div>
+        <div>computed:{{ FullName }}</div>
+
+        <!-- 计算属性默认只有 getter 获取计算结果，不过在需要时你也可以提供一个 setter 设置属性的值 -->
+
+        <!-- 侦听器 watch 当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。 -->
+
+        <!-- Class 与 Style 绑定 -->
+        <!-- 我们可以用v-bind来绑定他们:只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 v-bind 用于 class 和 style 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。 -->
+        <!-- //对象 -->
+        <div v-bind:class="{active:isActive}"></div>
+        <!-- v-bind:class 指令也可以与普通的 class 属性共存 -->
+        <div class="static" v-bind:class="{active:isActive,'offerror':offError}"></div>
+
+        <!-- 绑定的数据对象不必内联定义在模板里： -->
+        <div class="static" v-bind:class="object"></div>
+
+        <!-- 我们也可以在这里绑定一个返回对象的计算属性 -->
+        <div class="static" v-bind:class="classObject"></div>
+
+        <!-- 我们可以把一个数组传给 v-bind:class，以应用一个 class 列表： -->
+        <div v-bind:class="[activeClass, errorClass]"></div>
+
+        <!-- Class 与 Style 绑定用在组件上 -->
+        <!-- 当在一个自定义组件上使用 class 属性时，这些类将被添加到该组件的根元素上面。这个元素上已经存在的类不会被覆盖。 -->
+        <my-component class="baz boo"></my-component>
+        <my-component v-bind:class="{ active: isActive }"></my-component>
+
+        <!-- 绑定内联样式 -->
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize}">style</div>
+
+        <!-- 数组语法 -->
+        <div v-bind:style="[]"></div>
+
+        <!-- 多重值 -->
+        <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+
+        
+    </div>
+
+    <!-- 如何在控制台修改数据:vm.数据项 -->
+    <!-- //js文件放在vue后，vue放在节点后 -->
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue01.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+    </script> 
+</body>
+</html>

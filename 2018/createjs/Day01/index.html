@@ -1,0 +1,40 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>index01</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js" charset="utf-8"></script>
+</head>
+<!-- 调用加载完成函数 -->
+<body onload="init()">
+    <!-- 创建一个画布标签元素 -->
+    <canvas id="demoCanvas" height="500" width="300"></canvas>
+
+    <script>
+        function init(){
+            // 定义一个舞台通过创建一个新的舞台实例，通过在我们的画布元素的定义的id，这个舞台将我们所有的显示对象和视觉容器展示出来。
+            var stage = new createjs.Stage("demoCanvas");
+            // 首先，我们需要一个新的形状实例
+            var circle = new createjs.Shape();
+            // 然后我们可以使用形状的图形API去定义它的颜色和边框
+            circle.graphics.beginFill('DeepSkyBlue').drawCircle(0,0,50);
+            // 它的位置在canvas的x和y坐标
+            circle.x=100;
+            circle.y=100;
+
+            var rect = new createjs.Shape();
+            rect.graphics.beginFill('Pink').drawRect(200,200,100,100);
+            // rect.x=200;
+            // rect.y=200;
+
+            // 添加它们在我们的舞台
+            stage.addChild(rect);
+            stage.addChild(circle);
+            // 添加更新显示到我们舞台
+            stage.update();
+        }
+    </script>
+</body>
+</html>

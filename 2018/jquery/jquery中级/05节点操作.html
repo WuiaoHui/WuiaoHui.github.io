@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function(){
+             let $span = $('<span>这是一个span元素</span>');//创建节点
+             let $p = $('<p>这是一个p元素</p>')
+             let $h = $('<h1>这是一个h1标签</h1>')
+
+        //插入节点：
+        //内部：
+            //  $('#box').append($span);
+            $span.appendTo('#box');
+
+            // $('#box').prepend($p);
+            $p.prependTo('#box');
+
+        //外部：
+            // $('#box').after($h);
+            $h.insertAfter('#box');
+
+            // $('#box').before($h);
+            $h.insertBefore('#box');
+
+        //删除节点：
+            $p.remove();
+        })
+
+     
+       
+        
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
